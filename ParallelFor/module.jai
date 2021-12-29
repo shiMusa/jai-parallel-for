@@ -19,8 +19,8 @@ ParallelForWork :: struct(T: Type, proc: (*T, int)->()) {
 }
 #scope_export
 
-parallel_for :: (elements: []$T, $proc: (*T)->(), $logging: bool = false) {
-    p :: (x: *T, ix: int) {
+parallel_for :: inline (elements: []$T, $proc: (*T)->(), $logging: bool = false) {
+    p :: inline (x: *T, ix: int) {
         proc(x);
     }
     parallel_for(elements, p, logging);
@@ -95,8 +95,8 @@ ParallelForWorkGlobal :: struct(T: Type, G: Type, proc: (*T, int, *G)->()) {
 }
 #scope_export
 
-parallel_for :: (elements: []$T, global: *$G, $proc: (*T, *G) -> (), $logging: bool = false) {
-    p :: (x: *T, ix: int, g: *G) {
+parallel_for :: inline (elements: []$T, global: *$G, $proc: (*T, *G) -> (), $logging: bool = false) {
+    p :: inline (x: *T, ix: int, g: *G) {
         proc(x,g);
     }
     parallel_for(elements, global, p, logging);
@@ -172,8 +172,8 @@ ParallelForChunkedWork :: struct(T: Type, proc: (*T, int)->()) {
 }
 #scope_export
 
-parallel_for_chunked :: (elements: []$T, chunksize: int, $proc: (*T)->(), $logging: bool = false) {
-    p :: (x: *T, ix: int) {
+parallel_for_chunked :: inline (elements: []$T, chunksize: int, $proc: (*T)->(), $logging: bool = false) {
+    p :: inline (x: *T, ix: int) {
         proc(x);
     }
     parallel_for_chunked(elements, chunksize, p, logging);
@@ -258,8 +258,8 @@ ParallelForChunkedWorkGlobal :: struct(T: Type, G: Type, proc: (*T, int, *G) -> 
 }
 #scope_export
 
-parallel_for_chunked :: (elements: []$T, global: *$G, chunksize: int, $proc: (*T, *G) -> (), $logging: bool = false) {
-    p :: (x: *T, ix: int, g: *G) {
+parallel_for_chunked :: inline (elements: []$T, global: *$G, chunksize: int, $proc: (*T, *G) -> (), $logging: bool = false) {
+    p :: inline (x: *T, ix: int, g: *G) {
         proc(x,g);
     }
     parallel_for_chunked(elements, global, chunksize, p, logging);
