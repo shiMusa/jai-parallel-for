@@ -7,17 +7,29 @@ main :: () {
         <<it = it_index;
     }
 
+
     print("parallel_for\n");
 
-    proc :: (x: *int, ix: int) {
-        <<x *= <<x;
-    }
-
+    // the following does not work and throws errors, such as:
+    
+    // In Workspace 2 ("Target Program"):
+    // Error: Compile-time variable 'quick_lambda_parameter_1eea' is needed but was not specified.
+    
     // parallel_for(test_data, (x, ix) => {
     //     <<x = <<x * <<x;
     // }, logging=true);
 
+
+    // this works
+    proc :: (x: *int, ix: int) {
+        <<x *= <<x;
+    }
+
     parallel_for(test_data, proc, logging=true);
+
+    
+
+
 
     for 0..100 {
         print("%: %\n", it, test_data[it]);
